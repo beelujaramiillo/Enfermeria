@@ -1,98 +1,93 @@
-const ramos = [
-  { id: "morfologia", nombre: "Morfología", abre: ["fisiologia_basica", "internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "bases_enfermeria", nombre: "Bases Teorías de Enfermería y Bioética", abre: ["bases_cuidado", "internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "matematicas", nombre: "Bases Matemáticas y Estadística", abre: ["internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "ingles_a2", nombre: "Inglés Nivel A2-", abre: ["ingles_a2_plus"] },
-  { id: "comunicacion_escrita", nombre: "Comunicación Escrita", abre: ["internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "comunicacion_oral", nombre: "Comunicación Oral", abre: ["internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "biologia", nombre: "Bases Biológicas", abre: ["fisiologia_basica", "internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "quimica", nombre: "Bases Químicas", abre: ["bioquimica", "semana1", "internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "bases_cuidado", nombre: "Bases del Cuidado de Enfermería", abre: ["enf_familiar", "enf_clinico", "semana1", "internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "ingles_a2_plus", nombre: "Inglés Nivel A2+", abre: ["ingles_b1"] },
-  { id: "lectura_critica", nombre: "Lectura Crítica", abre: ["internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "pensamiento_critico", nombre: "Pensamiento Crítico", abre: ["internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "fisiologia_basica", nombre: "Fisiología Básica", abre: ["fisiopatologia", "internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "enf_familiar", nombre: "Enfermería Familiar y de la Comunidad", abre: ["enf_comunitaria", "internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "microbiologia", nombre: "Microbiología", abre: ["internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "salud_publica", nombre: "Salud Pública y Epidemiología", abre: ["internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "bioquimica", nombre: "Bioquímica", abre: ["farmacologia", "internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "semana1", nombre: "Semana I", abre: ["internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "ingles_b1", nombre: "Inglés Nivel B1-", abre: ["ingles_tecnico"] },
-  { id: "fisiopatologia", nombre: "Fisiopatología", abre: ["adulto1", "enf_mujer", "internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "enf_clinico", nombre: "Cuidado de Enfermería Clínico", abre: ["adulto1", "internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "psicologia", nombre: "Psicología de la Salud", abre: ["educacion_salud", "enf_psicosocial", "internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "farmacologia", nombre: "Farmacología Clínica", abre: ["adulto1", "enf_psicosocial", "internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "ingles_tecnico", nombre: "Inglés Técnico", abre: ["physical_exam", "internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "adulto1", nombre: "Cuidados de Enfermería del Adulto 1", abre: ["adulto2", "internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "educacion_salud", nombre: "Educación para la Salud", abre: ["internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "enf_mujer", nombre: "Enfermería de la Mujer y el Recién Nacido", abre: ["enf_nino", "internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "enf_psicosocial", nombre: "Enfermería Psicosocial", abre: ["enf_psiquiatria", "internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "adulto2", nombre: "Cuidados de Enfermería del Adulto 2", abre: ["enf_urgencia", "enf_comunitaria", "enf_geronto", "internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "fundamentos_socio", nombre: "Fundamentos Socioantropológicos", abre: ["internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "physical_exam", nombre: "Physical Exam", abre: ["internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "enf_psiquiatria", nombre: "Enfermería en Psiquiatría", abre: ["internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "enf_urgencia", nombre: "Enfermería en Urgencia", abre: ["internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "enf_comunitaria", nombre: "Enfermería en Salud Comunitaria", abre: ["internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "investigacion", nombre: "Investigación Cualitativa y Cuantitativa", abre: ["diseno_proyecto", "internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "gestion", nombre: "Gestión en Enfermería", abre: ["internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "enf_nino", nombre: "Enfermería del Niño y del Adolescente", abre: ["internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "enf_geronto", nombre: "Enfermería Gerontogeriátrica", abre: ["internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "diseno_proyecto", nombre: "Diseño de Proyecto de Investigación", abre: ["investigacion_aplicada", "internado_hospitalario", "internado_comunitario", "electivo1", "electivo2"] },
-  { id: "investigacion_aplicada", nombre: "Investigación Aplicada en Salud" },
-  { id: "internado_comunitario", nombre: "Internado Comunitario" },
-  { id: "internado_hospitalario", nombre: "Internado Hospitalario" },
-  { id: "electivo1", nombre: "Curso Electivo Opcional/Lab 1" },
-  { id: "electivo2", nombre: "Curso Electivo Opcional/Lab 2" },
-];
+const ramos = document.querySelectorAll('.ramo');
 
-const contenedor = document.getElementById("malla");
+// Define los prerrequisitos: "ramo destino" => ["requisitos"]
+const prerequisitos = {
+  ingles_a2_plus: ["ingles_a2"],
+  ingles_b1: ["ingles_a2_plus"],
+  ingles_tecnico: ["ingles_b1"],
+  bioquimica: ["quimica"],
+  fisiologia_basica: ["morfologia", "biologia"],
+  bases_cuidado: ["bases_enfermeria"],
+  semana1: ["bases_cuidado", "quimica"],
+  enf_familiar: ["bases_cuidado"],
+  enf_clinico: ["bases_cuidado"],
+  farmacologia: ["bioquimica"],
+  fisiopatologia: ["fisiologia_basica"],
+  adulto1: ["fisiopatologia", "enf_clinico", "farmacologia"],
+  enf_mujer: ["fisiopatologia"],
+  educacion_salud: ["psicologia"],
+  enf_psicosocial: ["farmacologia", "psicologia"],
+  adulto2: ["adulto1"],
+  enf_urgencia: ["adulto2"],
+  enf_comunitaria: ["adulto2", "enf_familiar"],
+  enf_geronto: ["adulto2"],
+  physical_exam: ["ingles_tecnico"],
+  enf_nino: ["enf_mujer"],
+  enf_psiquiatria: ["enf_psicosocial"],
+  diseno_proyecto: ["investigacion"],
+  investigacion_aplicada: ["diseno_proyecto"],
+  internado_hospitalario: [
+    "morfologia", "bases_enfermeria", "matematicas", "comunicacion_escrita", "comunicacion_oral", 
+    "biologia", "quimica", "bases_cuidado", "lectura_critica", "pensamiento_critico", 
+    "fisiologia_basica", "enf_familiar", "microbiologia", "salud_publica", "bioquimica", "semana1", 
+    "fisiopatologia", "enf_clinico", "psicologia", "farmacologia", "ingles_tecnico", "adulto1", 
+    "educacion_salud", "enf_mujer", "enf_psicosocial", "adulto2", "fundamentos_socio", 
+    "physical_exam", "enf_psiquiatria", "enf_urgencia", "enf_comunitaria", "investigacion", 
+    "gestion", "enf_nino", "enf_geronto", "diseno_proyecto"
+  ],
+  internado_comunitario: ["internado_hospitalario"],
+  electivo1: ["morfologia", "bases_enfermeria", "matematicas", "comunicacion_escrita", "comunicacion_oral", 
+              "biologia", "quimica", "bases_cuidado", "lectura_critica", "pensamiento_critico", 
+              "fisiologia_basica", "enf_familiar", "microbiologia", "salud_publica", "bioquimica", 
+              "semana1", "fisiopatologia", "enf_clinico", "psicologia", "farmacologia", 
+              "ingles_tecnico", "adulto1", "educacion_salud", "enf_mujer", "enf_psicosocial", 
+              "adulto2", "fundamentos_socio", "physical_exam", "enf_psiquiatria", "enf_urgencia", 
+              "enf_comunitaria", "investigacion", "gestion", "enf_nino", "enf_geronto", 
+              "diseno_proyecto"],
+  electivo2: ["electivo1"]
+};
 
-function crearCaja(ramo) {
-  const div = document.createElement("div");
-  div.className = "ramo";
-  div.textContent = ramo.nombre;
-  div.dataset.id = ramo.id;
-  if (ramo.prerrequisitos?.length) {
-    div.classList.add("bloqueado");
-  }
-  return div;
+// Revisión inicial: desactiva los ramos bloqueados
+function revisarEstadoInicial() {
+  ramos.forEach(ramo => {
+    const id = ramo.dataset.id;
+    if (prerequisitos[id]) {
+      ramo.classList.add("bloqueado");
+    }
+  });
 }
 
-// Crear diccionario de dependencias
-const dependencias = {};
-ramos.forEach(r => {
-  r.abre?.forEach(destino => {
-    if (!dependencias[destino]) dependencias[destino] = [];
-    dependencias[destino].push(r.id);
+// Verifica si todos los prerrequisitos de un ramo están aprobados
+function requisitosAprobados(id) {
+  const reqs = prerequisitos[id] || [];
+  return reqs.every(reqId => {
+    const ramo = document.querySelector(`.ramo[data-id="${reqId}"]`);
+    return ramo && ramo.classList.contains("aprobado");
   });
-});
+}
 
-ramos.forEach(ramo => contenedor.appendChild(crearCaja(ramo)));
-
+// Actualiza el estado bloqueado/desbloqueado de los ramos
 function actualizarEstado() {
-  document.querySelectorAll(".ramo").forEach(el => {
-    const id = el.dataset.id;
-    const requisitos = dependencias[id];
-    if (!requisitos) {
-      el.classList.remove("bloqueado");
-      return;
-    }
-    const aprobados = requisitos.every(reqId =>
-      document.querySelector(`.ramo[data-id="${reqId}"]`)?.classList.contains("aprobado")
-    );
-    if (aprobados) {
-      el.classList.remove("bloqueado");
-    } else {
-      el.classList.add("bloqueado");
-      el.classList.remove("aprobado");
+  ramos.forEach(ramo => {
+    const id = ramo.dataset.id;
+    if (prerequisitos[id]) {
+      if (requisitosAprobados(id)) {
+        ramo.classList.remove("bloqueado");
+      } else {
+        ramo.classList.add("bloqueado");
+        ramo.classList.remove("aprobado");
+      }
     }
   });
 }
 
-document.querySelectorAll(".ramo").forEach(el => {
-  el.addEventListener("click", () => {
-    if (el.classList.contains("bloqueado")) return;
-    el.classList.toggle("aprobado");
+// Evento al hacer clic en un ramo
+ramos.forEach(ramo => {
+  ramo.addEventListener("click", () => {
+    if (ramo.classList.contains("bloqueado")) return;
+    ramo.classList.toggle("aprobado");
     actualizarEstado();
   });
 });
+
+revisarEstadoInicial();
